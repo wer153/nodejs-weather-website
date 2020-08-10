@@ -1,38 +1,72 @@
 console.log("Client side javascript file is loaded!")
 
-const weatherForm = $("button")
-const search = $("input")
-const messageOne = $("#message-1")
-const messageTwo = $("#message-2")
-const messageThree = $("#message-3")
-const messageFour = $("#message-4")
 
+$("#message-1").text("From JavaScript")
 
-messageOne.text("From JavaScript")
-
-weatherForm.click((e) =>
+$("button").click((e) =>
 {
-  messageTwo.text("Loading...")
-  messageOne.text("")
+  $("#message-2").text("Loading...")
+  $("#message-1").text("")
   e.preventDefault()
-  const location = search.val()
+  const location = $("input").val()
   fetch("/weather?address="+location).then((response) =>
   {
     response.json().then((data) =>
     {
       if(data.error)
-      { messageTwo.text(data.error) }
+      {
+        $("#message-2").text(data.error)
+        $("#message-3").hide()
+        $("#message-4").hide()
+        $("p img").hide()
+      }
       else
       {
-        messageOne.text(data.location)
+        $("#message-1").text(data.location)
         const description=data.forecast.description
 
-        const temperature="Temperature: "+data.forecast.temperature
-        const feelslike="Feels like: "+data.forecast.feelslike
+        const temperature = data.forecast.temperature
+        const temperatureText = "Temperature: "+ temperature+"℃"
+        const feelslike = data.forecast.feelslike
+        const feelslikeText = "Feels like: "+ feelslike+"℃"
 
-        messageTwo.text(description)
-        messageThree.text(temperature)
-        messageFour.text(feelslike)
+// Show weather icon following the weather
+        $("#message-2").text(description).show()
+        $("#message-3").text(temperatureText).show()
+        $("#message-4").text(feelslikeText).show()
+        if(description.toUpperCase().includes("RAIN"))
+        { $("p img").attr('src','img/umbrella.svg').show() }
+        else if(description.toUpperCase().includes("SUNNY"))
+        { $("p img").attr('src','img/sun.svg').show()}
+        else if(description.toUpperCase().includes("CLOUDY"))
+        { $("p img").attr('src','img/cloud.svg').show()}
+        else if(description.toUpperCase().includes("CLEAR"))
+        { $("p img").attr('src','img/sun.svg').show()}
+        else if(description.toUpperCase().includes("LIGHTENING"))
+        { $("p img").attr('src','img/cloud-lightning.svg').show()}
+        else
+        { $("p img").hide() }
+
+        $("#city").text(data.location)
+        $("#progressbarTemperature").text(data.forecast.temperature).removeClass().addClass("progress-bar")
+        if(temperature<0)
+        { $("#progressbarTemperature").addClass("bg-primary").css("width","15%") }
+        else if(temperature<15)
+        { $("#progressbarTemperature").addClass("bg-info").css("width","40%") }
+        else if(temperature<30)
+        { $("#progressbarTemperature").addClass("bg-warning").css("width","60%") }
+        else
+        { $("#progressbarTemperature").addClass("bg-danger").css("width","85%") }
+
+        $("#progressbarFeelslike").text(data.forecast.feelslike).removeClass().addClass("progress-bar")
+        if(temperature<0)
+        { $("#progressbarFeelslike").addClass("bg-primary").css("width","15%") }
+        else if(temperature<15)
+        { $("#progressbarFeelslike").addClass("bg-info").css("width","40%") }
+        else if(temperature<30)
+        { $("#progressbarFeelslike").addClass("bg-warning").css("width","60%") }
+        else
+        { $("#progressbarFeelslike").addClass("bg-danger").css("width","85%") }
       }
     })
   })

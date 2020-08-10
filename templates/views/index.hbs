@@ -11,20 +11,61 @@
   <body>
     <div class="main-content">
       {{>header}}
-      <h1>{{title}}</h1>
 
-      <p class="grey">Use this site to get your weather!</p>
-      <div class="search-container">
-        <form class="searchLocation">
-          <input placeholder="Location ">
-          <button type="submit"><i class="searchIcon"></i></button>
-        </form>
-        <p><small>ex)Seoul, London, New york</small></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <p>
+              <img src="img/sun.svg"/>
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <h1>{{title}}</h1>
+            <p class="grey">Use this site to get your weather!</p>
+            <div class="search-container">
+              <form class="searchLocation">
+                <input placeholder="Location ">
+                <button type="submit"><i class="searchIcon"></i></button>
+              </form>
+              <p><small>ex)Seoul, London, New york</small></p>
+            </div>
+
+            <p id="message-1"></p>
+            <span id="message-2"></span><br>
+            <span id="message-3"></span>
+            <span id="message-4"></span>
+          </div>
+          <div class="col-sm-4">
+            <section style="max-width: 1080px; ">
+              <h3 id="city"> City </h3>
+              <hr>
+              <div class="progress" style="height:20px">
+                <div class="progress-bar bg-primary" role="progressbar" style="width:25%">
+                  Cold
+                </div>
+                <div class="progress-bar bg-info" role="progressbar" style="width:25%">
+                  Cool
+                </div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width:25%">
+                  Warm
+                </div>
+                <div class="progress-bar bg-danger" role="progressbar" style="width:25%">
+                  Hot
+                </div>
+              </div>
+              <h5 class="mt-2">Temperature ℃</h5>
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar bg-danger" id="progressbarTemperature" role="progressbar" style="width:25%"></div>
+                </div>
+              <h5 class="mt-2">Feels Like ℃</h5>
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar bg-danger" id="progressbarFeelslike" role="progressbar" style="width:25%"></div>
+                </div>
+            </section>
+          </div>
+        </div>
       </div>
-      <p id="message-1"></p>
-      <span id="message-2"></span>
-      <span id="message-3"></span>
-      <span id="message-4"></span>
+
     </div>
     {{>footer}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
