@@ -65,7 +65,3 @@ $("button").click((e) =>
     })
   })
 })
-// weatherForm.addEventListener("submit", () =>
-// {
-//   console.log("testing")
-// })
