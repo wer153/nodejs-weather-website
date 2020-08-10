@@ -35,7 +35,7 @@ $("button").click((e) =>
         else if(description.toUpperCase().includes("CLEAR"))
         { $("p img").attr('src','img/sun.svg').show()}
         else if(description.toUpperCase().includes("THUNDER"))
-        { $("p img").attr('src','img/cloud-lightnBLIZZARDing.svg').show()}
+        { $("p img").attr('src','img/cloud-lightning.svg').show()}
         else if(description.toUpperCase().includes("BLIZZARD"))
         { $("p img").attr('src','img/cloud-snow.svg').show()}
         else
