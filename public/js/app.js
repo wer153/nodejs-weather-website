@@ -1,39 +1,29 @@
 console.log("Client side javascript file is loaded!")
 
 
-$("#message-1").text("From JavaScript")
+$("#mainText").text("From JavaScript")
+$(".hide").hide()
 
 $("button").click((e) =>
 {
-  $("#message-2").text("Loading...")
-  $("#message-1").text("")
+  $("#mainText").text("Loading...")
+
   e.preventDefault()
   const location = $("input").val()
   fetch("/weather?address="+location).then((response) =>
   {
     response.json().then((data) =>
     {
+      $(".hide").hide()
       if(data.error)
-      {
-        $("#message-2").text(data.error)
-        $("#message-3").hide()
-        $("#message-4").hide()
-        $("p img").hide()
-      }
+      { $("#mainText").text(data.error) }
       else
       {
-        $("#message-1").text(data.location)
+        $("#mainText").text(data.location)
         const description=data.forecast.description
-
         const temperature = data.forecast.temperature
-        const temperatureText = "Temperature: "+ temperature+"℃"
         const feelslike = data.forecast.feelslike
-        const feelslikeText = "Feels like: "+ feelslike+"℃"
 
-// Show weather icon following the weather
-        $("#message-2").text(description).show()
-        $("#message-3").text(temperatureText).show()
-        $("#message-4").text(feelslikeText).show()
         if(description.toUpperCase().includes("RAIN"))
         { $("p img").attr('src','img/umbrella.svg').show() }
         else if(description.toUpperCase().includes("SUNNY"))
@@ -47,7 +37,11 @@ $("button").click((e) =>
         else
         { $("p img").hide() }
 
-        $("#city").text(data.location)
+        // Show weather icon following the weather
+        $(".hide").show()
+
+        $("#mainText").text(data.location)
+        $("#description").text(description)
         $("#progressbarTemperature").text(data.forecast.temperature).removeClass().addClass("progress-bar")
         if(temperature<0)
         { $("#progressbarTemperature").addClass("bg-primary").css("width","15%") }

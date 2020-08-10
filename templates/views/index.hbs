@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="/img/weather.png" >
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -14,30 +15,23 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-sm-4">
-            <p>
-              <img src="img/sun.svg"/>
-            </p>
-          </div>
-          <div class="col-sm-4">
+
+          <div class="col-md-4" style="margin: 0 auto;">
             <h1>{{title}}</h1>
             <p class="grey">Use this site to get your weather!</p>
             <div class="search-container">
               <form class="searchLocation">
-                <input placeholder="Location ">
+                <input class="input-sm" placeholder="Location ">
                 <button type="submit"><i class="searchIcon"></i></button>
               </form>
               <p><small>ex)Seoul, London, New york</small></p>
             </div>
-
-            <p id="message-1"></p>
-            <span id="message-2"></span><br>
-            <span id="message-3"></span>
-            <span id="message-4"></span>
           </div>
-          <div class="col-sm-4">
-            <section style="max-width: 1080px; ">
-              <h3 id="city"> City </h3>
+
+          <div class="col-md-4" >
+            <h3 id="mainText"></h3>
+            <section class="hide" style="max-width: 1080px; ">
+              <h5 id="description"></h5>
               <hr>
               <div class="progress" style="height:20px">
                 <div class="progress-bar bg-primary" role="progressbar" style="width:25%">
@@ -62,6 +56,13 @@
                   <div class="progress-bar bg-danger" id="progressbarFeelslike" role="progressbar" style="width:25%"></div>
                 </div>
             </section>
+          </div>
+          <div class="col-md-4" style="margin: auto auto;">
+            <p>
+              <br>
+              <img class="hide" src="img/sun.svg"/>
+              <br><br><br>
+            </p>
           </div>
         </div>
       </div>
